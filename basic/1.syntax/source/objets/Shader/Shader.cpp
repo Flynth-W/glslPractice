@@ -36,13 +36,13 @@ bool Shader::load(const std::string &vrxFl, const std::string &frgFl){
   }
   // link shaders
   //unsigned int ShdrPrgrm = glCreateProgram();
-  glAttachShader(ShdrPrgrm, vertexShader);
-  glAttachShader(ShdrPrgrm, fragmentShader);
-  glLinkProgram(ShdrPrgrm);
+  glAttachShader(shaderProgram, vertexShader);
+  glAttachShader(shaderProgram, fragmentShader);
+  glLinkProgram( shaderProgram );
   // check for linking errors
-  glGetProgramiv(ShdrPrgrm, GL_LINK_STATUS, &success);
+  glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
   if (!success) {
-      glGetProgramInfoLog(ShdrPrgrm, 512, NULL, infoLog);
+      glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
       std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
       return false;
   }
@@ -52,6 +52,11 @@ bool Shader::load(const std::string &vrxFl, const std::string &frgFl){
 }
 
 void Shader::use(){
-  glUseProgram(ShdrPrgrm);
+  //int location = glGetUniformLocation(shaderProgram, "");
+  //glUniform1f(location, timeValue);
+
+  glUseProgram(shaderProgram);
+
+
 }
 
