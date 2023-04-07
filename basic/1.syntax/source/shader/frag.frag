@@ -1,11 +1,11 @@
 #version 330 core
 
 
-in vec4 vertexColor;
+in vec4 interpolatedColor;
 out vec4 FragColor;
 
 void main()
 {
   
-  FragColor = vertexColor ;
+  FragColor = interpolatedColor ;
 }
