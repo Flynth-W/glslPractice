@@ -24,18 +24,6 @@ void Event::HandleEvent(GLFWwindow *window, int key, int scancode, int action, i
   if (buttonKey == _keys->cend()) {
       return;
   }
-  if(buttonKey->second.getState() == ButtonState::None){
-    std::cout << " none " << std::endl;
-  }
-  if(buttonKey->second.getState() == ButtonState::Pressed){
-    std::cout << " press " << std::endl;
-  }
-  if(buttonKey->second.getState() == ButtonState::Repeat){
-    std::cout << " Repeat" << std::endl;
-  }
-  if(buttonKey->second.getState() == ButtonState::Released){
-    std::cout << " Released" << std::endl;
-  }
   switch(action){
     case GLFW_PRESS:
         buttonKey->second.setState(ButtonState::Pressed);

@@ -1,10 +1,10 @@
 #include "app.hpp"
 
-//App app;
-//
-//void key_callback( GLFWwindow * ventana, int key, int scancode, int action, int mods){
-//  app.Events();
-//}
+void App::setKeys(std::unordered_map<int, ButtonKey> *_keys){
+  keys=_keys;
+  sceneMain.setKeys(_keys);
+}
+
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
     // make sure the viewport matches the new window dimensions; note that width and 

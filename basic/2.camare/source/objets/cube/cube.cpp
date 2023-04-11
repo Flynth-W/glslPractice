@@ -3,6 +3,7 @@
 
 void Cube::addUniformShader(glm::mat4 *_projection, glm::mat4 *_view){
   projection=_projection;
+  shader->setMat4("projection", *projection); 
   view=_view ;
 }
 void Cube::addShader(const char *vertexShader, const char *fragShader){
@@ -59,8 +60,8 @@ void Cube::Init(){
     shader->use();
     shader->setInt("texture1", 0);
     // projection:: global
-    glm::mat4 projection = glm::perspective(glm::radians(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
-    shader->setMat4("projection", projection); 
+    //glm::mat4 projection = glm::perspective(glm::radians(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+    //shader->setMat4("projection", projection); 
 };
 void Cube::Update(){};
 void Cube::Renderer(){
@@ -74,25 +75,25 @@ void Cube::Renderer(){
   //  view = glm::lookAt(glm::vec3(camX, 0.0f, camZ), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
     //view  = glm::translate(view, glm::vec3(0.0f, 0.0f, -10.0f));
     // camera direction
-    glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
-    glm::vec3 cameraTarget = glm::vec3(0.0f, 0.0f, 0.0f);
-    glm::vec3 cameraDirection = glm::normalize(cameraPos - cameraTarget);
-    // camera right
-    
-    glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f); 
-    glm::vec3 cameraRight = glm::normalize( glm::cross (up, cameraDirection));
-    // camera ascendent
-    glm::vec3 cameraUp = glm::cross(cameraDirection, cameraRight);
-    glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
-    //settigs
-    float cameraSpeed = static_cast<float>(1);
-    
-    //cameraPos -= cameraSpeed * cameraFront  ;
-    //cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
+    //glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
+    //glm::vec3 cameraTarget = glm::vec3(0.0f, 0.0f, 0.0f);
+    //glm::vec3 cameraDirection = glm::normalize(cameraPos - cameraTarget);
+    //// camera right
+    //
+    //glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f); 
+    //glm::vec3 cameraRight = glm::normalize( glm::cross (up, cameraDirection));
+    //// camera ascendent
+    //glm::vec3 cameraUp = glm::cross(cameraDirection, cameraRight);
+    //glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
+    ////settigs
+    //float cameraSpeed = static_cast<float>(1);
+    //
+    ////cameraPos -= cameraSpeed * cameraFront  ;
+    ////cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
 
-    // use camera  view::global
-    glm::mat4 view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
-    shader->setMat4("view", view);
+    //// use camera  view::global
+    //glm::mat4 view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
+    shader->setMat4("view", *view);
 
 
    glBindVertexArray(VAO);

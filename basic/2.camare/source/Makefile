@@ -13,5 +13,7 @@ bin: $(OBJS)
 	g++ -o $(FILE_BIN) $(OBJS) $(LIBS) $(CFLAGS)
 %.o:%.cpp
 	g++ -c $< -o $@
+sh: 
+	@ ./mk $(OBJS) $(LIBS) 
 clean:
 	rm *.o $(FILE_BIN) */*.o */*/*.o

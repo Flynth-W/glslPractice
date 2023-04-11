@@ -1,7 +1,14 @@
 #include "one.hpp"
 
+void One::setKeys(std::unordered_map<int, ButtonKey> *_keys){
+  keys=_keys;
+}
 
+One::One(){
+  camera = new Camera(1000,1000);
+}
 void One::Init(){
+  
   //float vertices[] = {
   //    // positions          // colors           // texture coords
   //     0.5f,  0.5f, 0.0f,   0.0f, 0.4f, 0.4f,   1.0f, 1.0f, // top right
@@ -66,9 +73,25 @@ void One::Init(){
   cube->addBuffer(vertices, sizeof(vertices),0, 0);
   cube->addTexture("./1298130.jpg") ;
   cube->Init();
+  cube->addUniformShader(camera->projection, camera->view);
 };
 void One::Update(){
-
+  auto buttonKey= keys->find(GLFW_KEY_W);
+  if(buttonKey->second.getState() == ButtonState::Pressed){
+    camera->up(0.003f); 
+  }
+  buttonKey= keys->find(GLFW_KEY_S);
+  if(buttonKey->second.getState() == ButtonState::Pressed){
+    camera->down(0.003f); 
+  }
+  buttonKey= keys->find(GLFW_KEY_A);
+  if(buttonKey->second.getState() == ButtonState::Pressed){
+    camera->left(0.003f); 
+  }
+  buttonKey= keys->find(GLFW_KEY_D);
+  if(buttonKey->second.getState() == ButtonState::Pressed){
+    camera->right(0.003f); 
+  }
 };
 void One::Render(){
 //  obj1->Renderer();

@@ -23,6 +23,7 @@ class App {
     App();
     ~App(){};
     void Init(unsigned int height , unsigned int width,const char* title, colorWin __color);
+    void setKeys(std::unordered_map<int,ButtonKey> *_keys);
     void Events();
     void Update();
     void Render();
@@ -34,5 +35,5 @@ class App {
     colorWin _color;
     One sceneMain;
     Camera *camera ;
-    std::unordered_map<int,ButtonKey>*_keys;
+    std::unordered_map<int,ButtonKey>*keys;
 };

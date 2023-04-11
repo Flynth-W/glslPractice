@@ -2,13 +2,15 @@
 #include "../../objets/square/square.hpp"
 #include "../../objets/cube/cube.hpp"
 #include "../../objets/abstract.hpp"
-
+#include "../../events/events.hpp"
+#include "../../utils/camera/camera.hpp"
 class One{
   public:
-    One(){};
+    One();
     ~One(){};
 
     void Init();
+    void setKeys(std::unordered_map<int,ButtonKey> *_keys);
     void Update();
     void Render();
     void Release();
@@ -16,5 +18,7 @@ class One{
   private:
     Objet * obj1 ;
     Objet * cube ;
+    std::unordered_map<int,ButtonKey>*keys;
+    Camera * camera ;
 };
 

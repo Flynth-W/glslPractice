@@ -1,10 +1,12 @@
 #include "camera.hpp"
 
 Camera::Camera(unsigned int width , unsigned int height) {
-  projection= new glm::mat4(1.0f);
-  view= new glm::mat4(1.0f);
   WIDTH  = width;
   HEIGHT = height ;
+  projection= new glm::mat4(1.0f);
+  ( *projection ) = glm::perspective(glm::radians(45.0f), (float)this->WIDTH / (float)this->HEIGHT , 0.1f, 100.0f);
+  view= new glm::mat4(1.0f);
+  ( *view  )= glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
 };
 
 void Camera::zoom(float fov){ 
