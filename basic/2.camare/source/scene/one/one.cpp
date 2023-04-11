@@ -77,19 +77,19 @@ void One::Init(){
 };
 void One::Update(){
   auto buttonKey= keys->find(GLFW_KEY_W);
-  if(buttonKey->second.getState() == ButtonState::Pressed){
+  if(buttonKey->second.getState() == ButtonState::Pressed || buttonKey->second.getState() == ButtonState::Repeat){
     camera->up(0.003f); 
   }
   buttonKey= keys->find(GLFW_KEY_S);
-  if(buttonKey->second.getState() == ButtonState::Pressed){
+  if(buttonKey->second.getState() == ButtonState::Pressed || buttonKey->second.getState() == ButtonState::Repeat){
     camera->down(0.003f); 
   }
   buttonKey= keys->find(GLFW_KEY_A);
-  if(buttonKey->second.getState() == ButtonState::Pressed){
+  if(buttonKey->second.getState() == ButtonState::Pressed || buttonKey->second.getState() == ButtonState::Repeat){
     camera->left(0.003f); 
   }
   buttonKey= keys->find(GLFW_KEY_D);
-  if(buttonKey->second.getState() == ButtonState::Pressed){
+  if(buttonKey->second.getState() == ButtonState::Pressed || buttonKey->second.getState() == ButtonState::Repeat){
     camera->right(0.003f); 
   }
 };
