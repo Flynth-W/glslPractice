@@ -48,4 +48,13 @@ void Event::PreHandleEvent(std::unordered_map<int, ButtonKey> *_keys){
   //};
   //mouse->whell=Whell::none;
 };
+void Event::scroll_callback(GLFWwindow *window, double xoffset, double yoffset, Mouse *mouse){
+  std::cout << " scrooll" << std::endl;
+  std::cout << " x: " << xoffset << " y: " <<yoffset  << std::endl;
 
+  if( yoffset == 1 ){
+    (*mouse).whell = WhellState::Up;
+  }else{
+    (*mouse).whell = WhellState::Down;
+  }
+}

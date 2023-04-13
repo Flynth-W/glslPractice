@@ -36,11 +36,11 @@ class Mouse{
 class Event{
   public:
 //    Event(std::unordered_map<int,ButtonKey>*_keys );
-    static void HandleEvent(GLFWwindow * window, int key, int scancode, int action, int mods, std::unordered_map<int,ButtonKey>*_keys);
     static void PreHandleEvent(std::unordered_map<int,ButtonKey>*_keys);
+    static void HandleEvent(GLFWwindow * window, int key, int scancode, int action, int mods, std::unordered_map<int,ButtonKey>*_keys);
 
+    static void scroll_callback(GLFWwindow* window, double xoffset, double yoffset,Mouse * mouse);
     //static void mouse_callback(GLFWwindow* window, double xposIn, double yposIn);
-    //static void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
     
 
 };
