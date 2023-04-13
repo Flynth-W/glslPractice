@@ -9,13 +9,16 @@
 App app;
 colorWin color;
 std::unordered_map<int,ButtonKey>keys;
-
+Mouse mouse ;
 
 void key_callback( GLFWwindow * window, int key, int scancode, int action, int mods){
   Event::HandleEvent(window, key,scancode,action,mods, &keys) ;
   return;
 }
-
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
+{
+  Event::scroll_callback(window, xoffset,yoffset, &mouse);
+}
 
 int main()
 {
@@ -36,6 +39,7 @@ int main()
   app.Init(1000,1000,"ProWin",color);
   app.setKeys(&keys);
   glfwSetKeyCallback (app.window, key_callback);
+  glfwSetScrollCallback(app.window, scroll_callback);
     while ( app.isRun() )
     {
         Event::PreHandleEvent(&keys);
