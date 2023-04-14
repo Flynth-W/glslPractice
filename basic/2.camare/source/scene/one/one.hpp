@@ -11,6 +11,7 @@ class One{
 
     void Init();
     void setKeys(std::unordered_map<int,ButtonKey> *_keys);
+    void setMouse(Mouse *_mouse);
     void Update();
     void Render();
     void Release();
@@ -19,6 +20,7 @@ class One{
     Objet * obj1 ;
     Objet * cube ;
     std::unordered_map<int,ButtonKey>*keys;
+    Mouse * mouse ;
     Camera * camera ;
 };
 

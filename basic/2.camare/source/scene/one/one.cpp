@@ -3,7 +3,9 @@
 void One::setKeys(std::unordered_map<int, ButtonKey> *_keys){
   keys=_keys;
 }
-
+void One::setMouse(Mouse *_mouse){
+  mouse=_mouse;
+}
 One::One(){
   camera = new Camera(1000,1000);
 }
