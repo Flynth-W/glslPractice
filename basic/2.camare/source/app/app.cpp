@@ -4,7 +4,10 @@ void App::setKeys(std::unordered_map<int, ButtonKey> *_keys){
   keys=_keys;
   sceneMain.setKeys(_keys);
 }
-
+void App::setMouse(Mouse *_mouse){
+  mouse =_mouse;
+  sceneMain.setMouse(mouse);
+}
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
     // make sure the viewport matches the new window dimensions; note that width and 

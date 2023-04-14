@@ -94,6 +94,14 @@ void One::Update(){
   if(buttonKey->second.getState() == ButtonState::Pressed || buttonKey->second.getState() == ButtonState::Repeat){
     camera->right(0.003f); 
   }
+  if( mouse->whell == WhellState::Up ){
+    std::cout << "UP" << std::endl;
+    camera->zooming(-1.0f);
+  }
+  if( mouse->whell == WhellState::Down ){
+    std::cout << "Down" << std::endl;
+    camera->zooming(1.0f);
+  }
 };
 void One::Render(){
 //  obj1->Renderer();

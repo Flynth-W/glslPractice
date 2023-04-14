@@ -38,11 +38,12 @@ int main()
   color.alpha=1.0f;
   app.Init(1000,1000,"ProWin",color);
   app.setKeys(&keys);
+  app.setMouse(&mouse);
   glfwSetKeyCallback (app.window, key_callback);
   glfwSetScrollCallback(app.window, scroll_callback);
     while ( app.isRun() )
     {
-        Event::PreHandleEvent(&keys);
+        Event::PreHandleEvent(&keys,&mouse);
         app.Events();
         app.Update();
         app.Render();

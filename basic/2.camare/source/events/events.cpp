@@ -36,7 +36,7 @@ void Event::HandleEvent(GLFWwindow *window, int key, int scancode, int action, i
       break;
   }
 }
-void Event::PreHandleEvent(std::unordered_map<int, ButtonKey> *_keys){
+void Event::PreHandleEvent(std::unordered_map<int, ButtonKey> *_keys,Mouse *mouse){
 //  keyboard keys only 
   for ( auto &item : ( *_keys ) ){
     if(item.second.getState() == ButtonState::Released){
@@ -46,12 +46,9 @@ void Event::PreHandleEvent(std::unordered_map<int, ButtonKey> *_keys){
   //for ( auto &item : ( *mouseButtons ) ){
   //  item.second.setState(ButtonStates::None);
   //};
-  //mouse->whell=Whell::none;
+  mouse->whell=WhellState::None;
 };
 void Event::scroll_callback(GLFWwindow *window, double xoffset, double yoffset, Mouse *mouse){
-  std::cout << " scrooll" << std::endl;
-  std::cout << " x: " << xoffset << " y: " <<yoffset  << std::endl;
-
   if( yoffset == 1 ){
     (*mouse).whell = WhellState::Up;
   }else{
