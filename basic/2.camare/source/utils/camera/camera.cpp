@@ -9,7 +9,12 @@ Camera::Camera(unsigned int width , unsigned int height) {
   ( *view  )= glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
 };
 
-void Camera::zoom(float fov){ 
+void Camera::zooming(float sum){ 
+  fov += sum;
+  if (fov < 1.0f)
+      fov = 1.0f;
+  if (fov > 45.0f)
+      fov = 45.0f;
   *projection = glm::perspective(glm::radians(fov), (float)this->WIDTH / (float)this->HEIGHT , 0.1f, 100.0f);
 };
 
