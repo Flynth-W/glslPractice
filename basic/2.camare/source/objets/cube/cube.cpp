@@ -93,6 +93,7 @@ void Cube::Renderer(){
 
     //// use camera  view::global
     //glm::mat4 view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
+    shader->setMat4("projection", *projection); 
     shader->setMat4("view", *view);
 
 
