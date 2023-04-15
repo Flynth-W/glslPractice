@@ -55,3 +55,26 @@ void Event::scroll_callback(GLFWwindow *window, double xoffset, double yoffset, 
     (*mouse).whell = WhellState::Down;
   }
 }
+
+void Event::mouse_callback(GLFWwindow *window, double xposIn, double yposIn, Mouse *mouse){
+  std::cout << "mouse call back" <<std::endl ;
+}
+void Event::mouse_button_callback(GLFWwindow *window, int button, int action, int mods, std::unordered_map<int, ButtonKey> *mouse){
+
+  auto buttonKey = mouse->find(button) ;
+  if (buttonKey == mouse->cend()) {
+      return;
+  }
+  switch(action){
+    case GLFW_PRESS:
+        buttonKey->second.setState(ButtonState::Pressed);
+      break;
+    case GLFW_REPEAT:
+        buttonKey->second.setState(ButtonState::Repeat);
+      break;
+    case GLFW_RELEASE:
+        buttonKey->second.setState(ButtonState::Released);
+      break;
+  }
+  
+}

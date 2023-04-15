@@ -40,7 +40,7 @@ class Event{
     static void HandleEvent(GLFWwindow * window, int key, int scancode, int action, int mods, std::unordered_map<int,ButtonKey>*_keys);
 
     static void scroll_callback(GLFWwindow* window, double xoffset, double yoffset,Mouse * mouse);
-    //static void mouse_callback(GLFWwindow* window, double xposIn, double yposIn);
-    
+    static void mouse_callback(GLFWwindow* window, double xposIn, double yposIn, Mouse * mouse);
+    static void mouse_button_callback(GLFWwindow* window, int button, int action, int mods, std::unordered_map<int,ButtonKey>*mouse) ;
 
 };
