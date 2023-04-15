@@ -10,6 +10,7 @@ App app;
 colorWin color;
 std::unordered_map<int,ButtonKey>keys;
 Mouse mouse ;
+std::unordered_map<int,ButtonKey>mouseKeys;
 
 void key_callback( GLFWwindow * window, int key, int scancode, int action, int mods){
   Event::HandleEvent(window, key,scancode,action,mods, &keys) ;
@@ -19,7 +20,13 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {
   Event::scroll_callback(window, xoffset,yoffset, &mouse);
 }
-
+void mouse_callback(GLFWwindow* window, double xposIn, double yposIn)
+{
+  //Event::mouse_callback(window, xposIn, yposIn, &mouse);
+}
+void mouse_button_callback(GLFWwindow* window, int button, int action, int mods){
+  Event::mouse_button_callback(window, button, action, mods, &mouseKeys);
+}
 int main()
 {
   // ad keys
@@ -30,7 +37,12 @@ int main()
   keys[GLFW_KEY_S] =  ButtonKey();
   keys[GLFW_KEY_A] =  ButtonKey();
   keys[GLFW_KEY_D] =  ButtonKey();
-  
+  //add mouse buttons 
+  mouseKeys[GLFW_MOUSE_BUTTON_RIGHT] = ButtonKey();
+  mouseKeys[GLFW_MOUSE_BUTTON_LEFT] = ButtonKey();
+  mouseKeys[GLFW_MOUSE_BUTTON_MIDDLE] = ButtonKey();
+  mouseKeys[GLFW_MOUSE_BUTTON_4] = ButtonKey();
+  mouseKeys[GLFW_MOUSE_BUTTON_5] = ButtonKey();
   
   color.red=0.0f;
   color.green=0.2f;
@@ -41,6 +53,9 @@ int main()
   app.setMouse(&mouse);
   glfwSetKeyCallback (app.window, key_callback);
   glfwSetScrollCallback(app.window, scroll_callback);
+  //glfwSetCursorPosCallback(app.window, mouse_callback);
+  glfwSetMouseButtonCallback(app.window,mouse_button_callback );
+  glfwSetInputMode(app.window,GLFW_CURSOR,GLFW_CURSOR_DISABLED) ;
     while ( app.isRun() )
     {
         Event::PreHandleEvent(&keys,&mouse);
