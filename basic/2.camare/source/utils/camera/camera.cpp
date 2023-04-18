@@ -39,6 +39,28 @@ void Camera::down(float deltaTime){
   *view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
 }
 
-void Camera::angleChange(glm::vec3 front){
+void Camera::angleChange(float xpos ,float ypos){
+  float xoffset = ( xpos - lastX );
+  float yoffset = ( lastY - ypos ); // reversed since y-coordinates go from bottom to top
+  lastX = xpos;
+  lastY = ypos;
+
+  xoffset *= sensitivity;
+  yoffset *= sensitivity;
+
+  yaw += xoffset;
+  pitch += yoffset;
+  
+  std::cout << " x: " << yaw <<" y: "<< pitch << std::endl;
+  // make sure that when pitch is out of bounds, screen doesn't get flipped
+  if (pitch > 45.0f)
+      pitch = 45.0f;
+  if (pitch < -45.0f)
+      pitch = -45.0f;
+  glm::vec3 front;
+  front.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
+  front.y = sin(glm::radians(pitch));
+  front.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
   cameraFront = glm::normalize(front);
+  *view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
 };
