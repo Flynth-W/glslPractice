@@ -6,6 +6,9 @@ void One::setKeys(std::unordered_map<int, ButtonKey> *_keys){
 void One::setMouse(Mouse *_mouse){
   mouse=_mouse;
 }
+void One::setMouseKeys(std::unordered_map<int, ButtonKey> *_mousekeys){
+  mouseKeys=_mousekeys;
+}
 One::One(){
   camera = new Camera(1000,1000);
 }
@@ -101,6 +104,10 @@ void One::Update(){
   if( mouse->whell == WhellState::Down ){
     std::cout << "Down" << std::endl;
     camera->zooming(1.0f);
+  }
+  auto mouseKey= mouseKeys->find(GLFW_MOUSE_BUTTON_LEFT);
+  if( mouseKey->second.getState() == ButtonState::Pressed ){
+    camera->angleChange(mouse->x,mouse->y);
   }
 };
 void One::Render(){
