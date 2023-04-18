@@ -57,7 +57,9 @@ void Event::scroll_callback(GLFWwindow *window, double xoffset, double yoffset, 
 }
 
 void Event::mouse_callback(GLFWwindow *window, double xposIn, double yposIn, Mouse *mouse){
-  std::cout << "mouse call back" <<std::endl ;
+
+  mouse->x = (float)xposIn;
+  mouse->y = (float)yposIn;
 }
 void Event::mouse_button_callback(GLFWwindow *window, int button, int action, int mods, std::unordered_map<int, ButtonKey> *mouse){
 

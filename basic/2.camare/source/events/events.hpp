@@ -27,7 +27,7 @@ class ButtonKey{
 
 class Mouse{
   public:
-  int x=0,y=0;
+  float x=0.0,y=0.0;
   WhellState whell=WhellState::None;
 };
 
