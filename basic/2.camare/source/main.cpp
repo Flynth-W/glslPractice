@@ -22,7 +22,7 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 }
 void mouse_callback(GLFWwindow* window, double xposIn, double yposIn)
 {
-  //Event::mouse_callback(window, xposIn, yposIn, &mouse);
+  Event::mouse_callback(window, xposIn, yposIn, &mouse);
 }
 void mouse_button_callback(GLFWwindow* window, int button, int action, int mods){
   Event::mouse_button_callback(window, button, action, mods, &mouseKeys);
@@ -43,7 +43,9 @@ int main()
   mouseKeys[GLFW_MOUSE_BUTTON_MIDDLE] = ButtonKey();
   mouseKeys[GLFW_MOUSE_BUTTON_4] = ButtonKey();
   mouseKeys[GLFW_MOUSE_BUTTON_5] = ButtonKey();
-  
+  mouse.x=500.0;
+  mouse.y=500.0;
+
   color.red=0.0f;
   color.green=0.2f;
   color.blue=0.3f;
@@ -51,9 +53,10 @@ int main()
   app.Init(1000,1000,"ProWin",color);
   app.setKeys(&keys);
   app.setMouse(&mouse);
+  app.setMouseKeys(&mouseKeys);
   glfwSetKeyCallback (app.window, key_callback);
   glfwSetScrollCallback(app.window, scroll_callback);
-  //glfwSetCursorPosCallback(app.window, mouse_callback);
+  glfwSetCursorPosCallback(app.window, mouse_callback);
   glfwSetMouseButtonCallback(app.window,mouse_button_callback );
   glfwSetInputMode(app.window,GLFW_CURSOR,GLFW_CURSOR_DISABLED) ;
     while ( app.isRun() )
