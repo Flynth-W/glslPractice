@@ -25,6 +25,7 @@ class App {
     void Init(unsigned int height , unsigned int width,const char* title, colorWin __color);
     void setKeys(std::unordered_map<int,ButtonKey> *_keys);
     void setMouse(Mouse *_mouse);
+    void setMouseKeys(std::unordered_map<int,ButtonKey> *_mousekeys);
     void Events();
     void Update();
     void Render();
@@ -37,5 +38,6 @@ class App {
     One sceneMain;
     Camera *camera ;
     std::unordered_map<int,ButtonKey>*keys;
+    std::unordered_map<int,ButtonKey>*mouseKeys;
     Mouse *mouse;
 };
