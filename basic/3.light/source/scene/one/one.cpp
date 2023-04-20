@@ -64,6 +64,12 @@ void One::Init(){
   //cube->addTexture("./1298130.jpg") ;
   cube->Init(camera);
   cube->addUniformShader(camera->projection, camera->view);
+  
+  cubeligth= new CubeLigth(); 
+  cubeligth->addShader("./shader/cubeLigth/vs.frag", "./shader/cubeLigth/fr.frag");
+  cubeligth->addBuffer(vertices, sizeof(vertices),0, 0);
+  cubeligth->Init(camera);
+  cubeligth->addUniformShader(camera->projection, camera->view);
 };
 void One::Update(){
   auto buttonKey= keys->find(GLFW_KEY_W);
@@ -96,6 +102,7 @@ void One::Update(){
 void One::Render(){
 //  obj1->Renderer();
   cube->Renderer();
+  cubeligth->Renderer();
 };
 void One::Release(){};
 

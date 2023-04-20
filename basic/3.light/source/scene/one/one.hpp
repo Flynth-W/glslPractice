@@ -2,6 +2,7 @@
 #include "../../objets/square/square.hpp"
 #include "../../objets/cube/cube.hpp"
 #include "../../objets/cube1/cube1.hpp"
+#include "../../objets/cubeLigth/cubeLigth.hpp"
 #include "../../objets/abstract.hpp"
 #include "../../events/events.hpp"
 #include "../../utils/camera/camera.hpp"
@@ -21,6 +22,7 @@ class One{
   private:
     Objet * obj1 ;
     Objet * cube ;
+    Objet * cubeligth ;
     std::unordered_map<int,ButtonKey>*keys;
     std::unordered_map<int,ButtonKey>*mouseKeys;
     Mouse * mouse ;
