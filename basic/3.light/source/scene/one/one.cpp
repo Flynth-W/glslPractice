@@ -58,8 +58,8 @@ void One::Init(){
         -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f
     };
  
-  cube= new Cube1(); 
-  cube->addShader("./shader/cube1/vs.frag", "./shader/cube1/fr.frag");
+  cube= new CubeMaterial(); 
+  cube->addShader("./shader/cubeMaterial/vs.frag", "./shader/cubeMaterial/fr.frag");
   cube->addBuffer(vertices, sizeof(vertices),0, 0);
   //cube->addTexture("./1298130.jpg") ;
   cube->Init(camera);
