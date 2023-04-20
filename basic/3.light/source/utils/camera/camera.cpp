@@ -39,6 +39,17 @@ void Camera::down(float deltaTime){
   *view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
 }
 
+void Camera::top(float deltaTime){
+  float cameraSpeed = static_cast<float>(cameraVelocity * deltaTime);
+  cameraPos += cameraSpeed * cameraUp;
+  *view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
+}
+void Camera::bottom(float deltaTime){
+  float cameraSpeed = static_cast<float>(cameraVelocity * deltaTime);
+  cameraPos -= cameraSpeed * cameraUp;
+  *view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
+}
+
 void Camera::angleChange(float xpos ,float ypos){
   float xoffset = ( xpos - lastX );
   float yoffset = ( lastY - ypos ); // reversed since y-coordinates go from bottom to top

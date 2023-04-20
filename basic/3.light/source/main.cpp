@@ -37,6 +37,9 @@ int main()
   keys[GLFW_KEY_S] =  ButtonKey();
   keys[GLFW_KEY_A] =  ButtonKey();
   keys[GLFW_KEY_D] =  ButtonKey();
+  
+  keys[GLFW_KEY_K] =  ButtonKey();
+  keys[GLFW_KEY_J] =  ButtonKey();
   //add mouse buttons 
   mouseKeys[GLFW_MOUSE_BUTTON_RIGHT] = ButtonKey();
   mouseKeys[GLFW_MOUSE_BUTTON_LEFT] = ButtonKey();

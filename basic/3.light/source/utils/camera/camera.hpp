@@ -34,6 +34,8 @@ class Camera{
     void right(float deltaTime);
     void up(float deltaTime);
     void down(float deltaTime);
-
+    
+    void bottom(float deltaTime);
+    void top(float deltaTime);
     void angleChange(float xpos ,float ypos);
 };

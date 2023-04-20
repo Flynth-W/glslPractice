@@ -88,6 +88,14 @@ void One::Update(){
   if(buttonKey->second.getState() == ButtonState::Pressed || buttonKey->second.getState() == ButtonState::Repeat){
     camera->right(0.003f); 
   }
+  buttonKey= keys->find(GLFW_KEY_K);
+  if(buttonKey->second.getState() == ButtonState::Pressed || buttonKey->second.getState() == ButtonState::Repeat){
+    camera->top(0.003f); 
+  }
+  buttonKey= keys->find(GLFW_KEY_J);
+  if(buttonKey->second.getState() == ButtonState::Pressed || buttonKey->second.getState() == ButtonState::Repeat){
+    camera->bottom(0.003f); 
+  }
   if( mouse->whell == WhellState::Up ){
     camera->zooming(-1.0f);
   }
