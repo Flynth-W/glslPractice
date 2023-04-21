@@ -64,6 +64,7 @@ void Cube::Update(){};
 void Cube::Renderer(){
   glActiveTexture(GL_TEXTURE0);
   glBindTexture(GL_TEXTURE_2D, texture1);
+  
   shader->use();
   shader->setMat4("projection", *projection); 
   shader->setMat4("view", *view);

@@ -4,6 +4,7 @@ OBJS = ./main.o ./app/app.o ./scene/one/one.o \
 			 ./objets/cube/cube.o \
 			 ./objets/cube1/cube1.o \
 			 ./objets/cubeLigth/cubeLigth.o \
+			 ./objets/box/box.o \
 			 ./objets/cubeMaterial/cubeMaterial.o \
 			 ./utils/camera/camera.o \
 			 ./events/events.o 

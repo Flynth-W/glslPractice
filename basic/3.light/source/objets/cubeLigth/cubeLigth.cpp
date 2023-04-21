@@ -19,7 +19,7 @@ void CubeLigth::addBuffer(float *vertices, unsigned int sizeVert, unsigned int *
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeVert, vertices, GL_STATIC_DRAW);
     // note that we update the lamp's position attribute's stride to reflect the updated buffer data
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
 }
 void CubeLigth::addTexture(const char *texture){};

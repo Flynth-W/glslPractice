@@ -4,6 +4,7 @@
 #include "../../objets/cube1/cube1.hpp"
 #include "../../objets/cubeLigth/cubeLigth.hpp"
 #include "../../objets/cubeMaterial/cubeMaterial.hpp"
+#include "../../objets/box/box.hpp"
 #include "../../objets/abstract.hpp"
 #include "../../events/events.hpp"
 #include "../../utils/camera/camera.hpp"

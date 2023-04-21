@@ -43,10 +43,10 @@ glm::vec3 lightPos(1.2f, 1.0f, -4.0f);
   lightColor.x = static_cast<float>(sin(glfwGetTime() * 2.0));
   lightColor.y = static_cast<float>(sin(glfwGetTime() * 0.7));
   lightColor.z = static_cast<float>(sin(glfwGetTime() * 1.3));
-  glm::vec3 diffuseColor = lightColor   * glm::vec3(0.5f); // decrease the influence
-  glm::vec3 ambientColor = diffuseColor * glm::vec3(0.9f); // low influence
-  //shader->setVec3("light.ambient", ambientColor);
-  //shader->setVec3("light.diffuse", diffuseColor);
+  glm::vec3 diffuseColor = lightColor   * glm::vec3(0.2f); // decrease the influence
+  glm::vec3 ambientColor = diffuseColor * glm::vec3(0.5f); // low influence
+ //shader->setVec3("light.ambient", ambientColor);
+ //shader->setVec3("light.diffuse", diffuseColor);
   shader->setVec3("light.ambient", 0.2f ,0.2f,0.2f);
   shader->setVec3("light.diffuse", 0.5f,0.5f,0.5f);
   shader->setVec3("light.specular", 1.0f, 1.0f, 1.0f);
