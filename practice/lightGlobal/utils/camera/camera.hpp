@@ -6,7 +6,7 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <iostream>
 class Camera{
-  private:
+  public:
     unsigned int WIDTH;
     unsigned int HEIGHT;
 

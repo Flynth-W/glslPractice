@@ -30,7 +30,7 @@ void Square::addBuffer(float *vertices, unsigned int sizeVert, unsigned int *ind
     glEnableVertexAttribArray(2);
     
 }
-void Square::Init(){} ;
+void Square::Init(Camera *_camera){} ;
 void Square::Update(){
 
 };

@@ -2,6 +2,7 @@ OBJS = ./main.o ./app/app.o ./scene/one/one.o \
 			 ./objets/square/square.o \
 			 ./objets/Shader/Shader.o \
 			 ./objets/cube/cube.o \
+			 ./objets/cubeLigth/cubeLigth.o \
 			 ./utils/camera/camera.o \
 			 ./events/events.o 
 

@@ -8,13 +8,15 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include "../utils/camera/camera.hpp"
+
 class Objet{
   public:
     virtual void addUniformShader(glm::mat4 *_projection,glm::mat4 * _view){};
     virtual void addShader(const char * vertexShader, const char * fragShader){};
     virtual void addBuffer(float * vertices , unsigned int sizeVert, unsigned int * indices , unsigned int  sizeInd){};
     virtual void addTexture(const char * texture){};
-    virtual void Init(){};
+    virtual void Init(Camera *_camera){};
     virtual void Update(){};
     virtual void Renderer(){};
 };

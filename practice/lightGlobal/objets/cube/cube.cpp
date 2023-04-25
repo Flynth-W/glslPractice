@@ -56,9 +56,10 @@ void Cube::addTexture(const char *texture){
 }
 const unsigned int SCR_WIDTH = 1000;
 const unsigned int SCR_HEIGHT = 1000;
-void Cube::Init(){
+void Cube::Init(Camera *_camera){
     shader->use();
     shader->setInt("texture1", 0);
+    camera=_camera;
     // projection:: global
     //glm::mat4 projection = glm::perspective(glm::radians(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
     //shader->setMat4("projection", projection); 
@@ -68,35 +69,9 @@ void Cube::Renderer(){
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, texture1);
     shader->use();
-    //glm::mat4 view = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
-    float radius = 10.0f;
-    float camX = static_cast<float>(sin(glfwGetTime()) * radius);
-    float camZ = static_cast<float>(cos(glfwGetTime()) * radius);
-  //  view = glm::lookAt(glm::vec3(camX, 0.0f, camZ), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-    //view  = glm::translate(view, glm::vec3(0.0f, 0.0f, -10.0f));
-    // camera direction
-    //glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
-    //glm::vec3 cameraTarget = glm::vec3(0.0f, 0.0f, 0.0f);
-    //glm::vec3 cameraDirection = glm::normalize(cameraPos - cameraTarget);
-    //// camera right
-    //
-    //glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f); 
-    //glm::vec3 cameraRight = glm::normalize( glm::cross (up, cameraDirection));
-    //// camera ascendent
-    //glm::vec3 cameraUp = glm::cross(cameraDirection, cameraRight);
-    //glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
-    ////settigs
-    //float cameraSpeed = static_cast<float>(1);
-    //
-    ////cameraPos -= cameraSpeed * cameraFront  ;
-    ////cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
-
-    //// use camera  view::global
-    //glm::mat4 view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
     shader->setMat4("projection", *projection); 
     shader->setMat4("view", *view);
-
-
+    shader->setVec3("viewPos", camera->cameraPos);
    glBindVertexArray(VAO);
    // model objet model::local
    glm::mat4 model = glm::mat4(1.0f);
