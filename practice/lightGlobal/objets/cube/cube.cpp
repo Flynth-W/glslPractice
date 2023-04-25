@@ -91,14 +91,14 @@ void Cube::Renderer(){
     shader->setMat4("view", *view);
     shader->setVec3("viewPos", camera->cameraPos);
     //materal
-    shader->setInt("material.diffuse", 1);
-    shader->setInt("material.specular", 0);
+    shader->setInt("material.diffuse", 0);
+    shader->setInt("material.specular", 1);
     shader->setFloat("material.shininess", 64.0f);
-    //light
-    shader->setVec3("light.ambient", 0.2f, 0.2f, 0.2f);
-    shader->setVec3("light.diffuse", 0.5f, 0.5f, 0.5f);
-    shader->setVec3("light.specular", 1.0f, 1.0f, 1.0f);
-    shader->setVec3("light.position", lightPos);
+  //light global (sun)
+  shader->setVec3("dirLight.direction", -0.2f, -1.0f, -0.3f);
+  shader->setVec3("dirLight.ambient", 0.05f, 0.05f, 0.05f);
+  shader->setVec3("dirLight.diffuse", 0.4f, 0.4f, 0.4f);
+  shader->setVec3("dirLight.specular", 0.5f, 0.5f, 0.5f);
 
    glBindVertexArray(VAO);
    // model objet model::local
