@@ -65,6 +65,8 @@ void main()
   vec3 viewDir = normalize(viewPos - FragPos);
   // light global(sun)
   vec3 result = CalcDirLight(dirLight, norm, viewDir);
+  // spotLight
+  result += CalcSpotLight(spotLight, norm, FragPos, viewDir);    
 
   FragColor = vec4(result,1.0);
   //FragColor = texture(texture1, TexCoords);

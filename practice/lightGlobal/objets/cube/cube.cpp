@@ -100,6 +100,17 @@ void Cube::Renderer(){
   shader->setVec3("dirLight.diffuse", 0.4f, 0.4f, 0.4f);
   shader->setVec3("dirLight.specular", 0.5f, 0.5f, 0.5f);
 
+        // spotLight
+        shader->setVec3("spotLight.position", camera->cameraPos);
+        shader->setVec3("spotLight.direction", camera->cameraFront);
+        shader->setVec3("spotLight.ambient", 0.0f, 0.0f, 0.0f);
+        shader->setVec3("spotLight.diffuse", 1.0f, 1.0f, 1.0f);
+        shader->setVec3("spotLight.specular", 1.0f, 1.0f, 1.0f);
+        shader->setFloat("spotLight.constant", 1.0f);
+        shader->setFloat("spotLight.linear", 0.09f);
+        shader->setFloat("spotLight.quadratic", 0.032f);
+        shader->setFloat("spotLight.cutOff", glm::cos(glm::radians(5.5f)));
+        shader->setFloat("spotLight.outerCutOff", glm::cos(glm::radians(9.5f)));     
    glBindVertexArray(VAO);
    // model objet model::local
    glm::mat4 model = glm::mat4(1.0f);
