@@ -128,7 +128,7 @@ void One::Init(){
   cube= new Cube(); 
   cube->addShader("./shader/cube/vertex.frag", "./shader/cube/frag.frag");
   cube->addBuffer(vertices, sizeof(vertices),0, 0);
-  cube->addTexture("./1298130.jpg") ;
+  cube->addTexture("./container2.png") ;
   cube->Init(camera);
   cube->addUniformShader(camera->projection, camera->view);
 };

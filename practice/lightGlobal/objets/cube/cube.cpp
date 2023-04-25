@@ -1,4 +1,40 @@
 #include "cube.hpp"
+unsigned int loadTexture(char const * path)
+{
+    unsigned int textureID;
+    glGenTextures(1, &textureID);
+
+    int width, height, nrComponents;
+    unsigned char *data = stbi_load(path, &width, &height, &nrComponents, 0);
+    if (data)
+    {
+        GLenum format;
+        if (nrComponents == 1)
+            format = GL_RED;
+        else if (nrComponents == 3)
+            format = GL_RGB;
+        else if (nrComponents == 4)
+            format = GL_RGBA;
+
+        glBindTexture(GL_TEXTURE_2D, textureID);
+        glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
+        glGenerateMipmap(GL_TEXTURE_2D);
+
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+        stbi_image_free(data);
+    }
+    else
+    {
+        std::cout << "Texture failed to load at path: " << path << std::endl;
+        stbi_image_free(data);
+    }
+
+    return textureID;
+}
 
 
 void Cube::addUniformShader(glm::mat4 *_projection, glm::mat4 *_view){
@@ -30,29 +66,8 @@ void Cube::addBuffer(float *vertices, unsigned int sizeVert, unsigned int *indic
     glEnableVertexAttribArray(2);
 }
 void Cube::addTexture(const char *texture){
-    glGenTextures(1, &texture1);
-    glBindTexture(GL_TEXTURE_2D, texture1);
-    // set the texture wrapping parameters
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    // set texture filtering parameters
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    // load image, create texture and generate mipmaps
-    int width, height, nrChannels;
-    stbi_set_flip_vertically_on_load(true); // tell stb_image.h to flip loaded texture's on the y-axis.
-    unsigned char *data = stbi_load(texture, &width, &height, &nrChannels, 0);
-    if (data)
-    {
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
-        glGenerateMipmap(GL_TEXTURE_2D);
-    }
-    else
-    {
-        std::cout << "Failed to load texture" << std::endl;
-    }
-    stbi_image_free(data);
-
+    texture1 = loadTexture("1298130.jpg");
+    texture2 = loadTexture("container2_specular.png");
 }
 const unsigned int SCR_WIDTH = 1000;
 const unsigned int SCR_HEIGHT = 1000;
@@ -66,12 +81,25 @@ void Cube::Init(Camera *_camera){
 };
 void Cube::Update(){};
 void Cube::Renderer(){
+    glm::vec3 lightPos(1.2f, 1.0f, 2.0f);
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, texture1);
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_2D, texture2);
     shader->use();
     shader->setMat4("projection", *projection); 
     shader->setMat4("view", *view);
     shader->setVec3("viewPos", camera->cameraPos);
+    //materal
+    shader->setInt("material.diffuse", 1);
+    shader->setInt("material.specular", 0);
+    shader->setFloat("material.shininess", 64.0f);
+    //light
+    shader->setVec3("light.ambient", 0.2f, 0.2f, 0.2f);
+    shader->setVec3("light.diffuse", 0.5f, 0.5f, 0.5f);
+    shader->setVec3("light.specular", 1.0f, 1.0f, 1.0f);
+    shader->setVec3("light.position", lightPos);
+
    glBindVertexArray(VAO);
    // model objet model::local
    glm::mat4 model = glm::mat4(1.0f);
