@@ -49,7 +49,8 @@ in vec2 TexCoords;
 
 uniform vec3 viewPos;
 uniform DirLight dirLight;
-uniform PointLight pointLights[NR_POINT_LIGHTS];
+//uniform PointLight pointLights[NR_POINT_LIGHTS];
+uniform PointLight pointLight;
 uniform SpotLight spotLight;
 uniform Material material;
 
@@ -63,13 +64,15 @@ void main()
   // properties
   vec3 norm = normalize(Normal);
   vec3 viewDir = normalize(viewPos - FragPos);
+  vec3 result=vec3(0.0);
   // light global(sun)
-  vec3 result = CalcDirLight(dirLight, norm, viewDir);
+  result += CalcDirLight(dirLight, norm, viewDir);
+  //pointLight
+  result += CalcPointLight(pointLight, norm, FragPos, viewDir);    
   // spotLight
   result += CalcSpotLight(spotLight, norm, FragPos, viewDir);    
 
   FragColor = vec4(result,1.0);
-  //FragColor = texture(texture1, TexCoords);
 }
 // calculates the color when using a directional light.
 vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir)

@@ -100,17 +100,25 @@ void Cube::Renderer(){
   shader->setVec3("dirLight.diffuse", 0.4f, 0.4f, 0.4f);
   shader->setVec3("dirLight.specular", 0.5f, 0.5f, 0.5f);
 
-        // spotLight
-        shader->setVec3("spotLight.position", camera->cameraPos);
-        shader->setVec3("spotLight.direction", camera->cameraFront);
-        shader->setVec3("spotLight.ambient", 0.0f, 0.0f, 0.0f);
-        shader->setVec3("spotLight.diffuse", 1.0f, 1.0f, 1.0f);
-        shader->setVec3("spotLight.specular", 1.0f, 1.0f, 1.0f);
-        shader->setFloat("spotLight.constant", 1.0f);
-        shader->setFloat("spotLight.linear", 0.09f);
-        shader->setFloat("spotLight.quadratic", 0.032f);
-        shader->setFloat("spotLight.cutOff", glm::cos(glm::radians(5.5f)));
-        shader->setFloat("spotLight.outerCutOff", glm::cos(glm::radians(9.5f)));     
+  // point light 1
+  shader->setVec3("pointLight.position", 1.2f, 1.0f, 2.0f);
+  shader->setVec3("pointLight.ambient", 0.05f, 0.05f, 0.05f);
+  shader->setVec3("pointLight.diffuse", 0.8f, 0.8f, 0.8f);
+  shader->setVec3("pointLight.specular", 1.0f, 1.0f, 1.0f);
+  shader->setFloat("pointLight.constant", 1.0f);
+  shader->setFloat("pointLight.linear", 0.09f);
+  shader->setFloat("pointLight.quadratic", 0.032f);
+  // spotLight
+  shader->setVec3("spotLight.position", camera->cameraPos);
+  shader->setVec3("spotLight.direction", camera->cameraFront);
+  shader->setVec3("spotLight.ambient", 0.0f, 0.0f, 0.0f);
+  shader->setVec3("spotLight.diffuse", 1.0f, 1.0f, 1.0f);
+  shader->setVec3("spotLight.specular", 1.0f, 1.0f, 1.0f);
+  shader->setFloat("spotLight.constant", 1.0f);
+  shader->setFloat("spotLight.linear", 0.09f);
+  shader->setFloat("spotLight.quadratic", 0.032f);
+  shader->setFloat("spotLight.cutOff", glm::cos(glm::radians(5.5f)));
+  shader->setFloat("spotLight.outerCutOff", glm::cos(glm::radians(9.5f)));     
    glBindVertexArray(VAO);
    // model objet model::local
    glm::mat4 model = glm::mat4(1.0f);
