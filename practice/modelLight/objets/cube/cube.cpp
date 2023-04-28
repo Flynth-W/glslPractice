@@ -55,8 +55,8 @@ void Cube::Renderer(){
     shader->setMat4("view", *view);
     shader->setVec3("viewPos", camera->cameraPos);
     //materal
-    shader->setInt("material.diffuse", 0);
-    shader->setInt("material.specular", 1);
+    shader->setInt("material.diffuse", 2);
+    shader->setInt("material.specular", 2);
     shader->setFloat("material.shininess", 64.0f);
   //light global (sun)
   shader->setVec3("dirLight.direction", -0.2f, -1.0f, -0.3f);
